@@ -1,0 +1,3 @@
+{
+    "searchDocs": "select DOC_ID id, DOC_NM name, DOC_SPECIALTY speciality, DOC_DEGREE degree, DOC_MOBILE mobile from t_mt_doc"
+}

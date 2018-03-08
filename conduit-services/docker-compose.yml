@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  backend-services:
+    image: backend-services
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5858:8080"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      dbHost: db
+      user: lifesciences
+      password: lifesciences
+      database: lifesciences

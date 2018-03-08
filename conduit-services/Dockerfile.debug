@@ -1,0 +1,8 @@
+FROM node:carbon
+RUN npm install nodemon -g
+WORKDIR /src
+EXPOSE 8080
+#ENTRYPOINT ["/bin/bash", "-c", "if [ -z \"$REMOTE_DEBUGGING\" ]; then nodemon -L --debug; else nodemon -L --debug-brk; fi"]
+COPY . /src
+RUN npm install
+CMD ["nodemon", "-L","server.js"]
