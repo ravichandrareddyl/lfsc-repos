@@ -1,0 +1,1 @@
+delete from mysql.user where host='%' and user='root';
