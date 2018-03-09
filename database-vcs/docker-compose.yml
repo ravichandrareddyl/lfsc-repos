@@ -1,0 +1,26 @@
+version: '2'
+services:
+  flyway:
+    image: boxfuse/flyway
+    command: -url=jdbc:mysql://db -schemas=lifescience -user=root -password=parnika migrate
+    volumes:
+      - ./sql:/flyway/sql
+    depends_on:
+      - db
+    links:
+      - db:db
+  db:
+    image: mysql/mysql-server:latest
+    restart: always
+    volumes:
+      - ./data-dir:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=parnika
+      - MYSQL_DATABASE=lifescience
+      - MYSQL_USER=lifescience
+      - MYSQL_PASSWORD=lifescience
+      - MYSQL_ROOT_HOST=% 
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - 3306:3306
+      - 33060:33060
