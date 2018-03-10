@@ -1,0 +1,13 @@
+version: '2'
+services:
+ glassfish:
+   build:
+    context: .
+    dockerfile: Dockerfile
+   volumes:
+    - ./www:/var/www/html
+   ports:
+    - "8084:8080"
+    - "4848:4848"
+   environment:
+    - ADMIN_PASSWORD=adminpass
