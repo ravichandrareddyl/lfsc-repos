@@ -13,7 +13,7 @@ services:
     image: mysql/mysql-server:latest
     restart: always
     volumes:
-      - ./data-dir:/var/lib/mysql
+      - ~/data-dir:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=parnika
       - MYSQL_DATABASE=lifescience
