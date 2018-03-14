@@ -10,4 +10,5 @@ services:
     - "8084:8080"
     - "4848:4848"
    environment:
-    - ADMIN_PASSWORD=adminpass
+    - ADMIN_PASSWORD=${GLASSFISH_ADMIN}
+    - TZ=Asia/Kolkata
