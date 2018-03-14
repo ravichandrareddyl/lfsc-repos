@@ -1,1 +1,1 @@
-docker-compose restart lifescience-web
+docker-compose restart parnika-web
