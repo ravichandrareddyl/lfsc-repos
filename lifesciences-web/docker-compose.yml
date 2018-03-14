@@ -1,14 +1,20 @@
 version: '2'
 
 services:
-  lifescience-web:
-    image: nginx
+  parnika-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     volumes:
-      - ./lifescience.template:/etc/nginx/conf.d/lifescience.template
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./templates/:/etc/nginx/conf.d/:ro
+      - ./sites/:/usr/share/nginx/html/:ro
+      - ./certs/:/etc/nginx/certs/:ro
     ports:
-    - "8086:80"
+      - "8086:80"
     environment:
-    - NGINX_HOST=foobar.com
-    - NGINX_PORT=80
-    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/lifescience.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+      - TZ=Asia/Kolkata
+    #- NGINX_HOST=foobar.com
+    #- NGINX_PORT=80
+    #command: /bin/bash -c "envsubst < /etc/nginx/conf.d/lifescience.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"

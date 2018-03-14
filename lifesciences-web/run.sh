@@ -1,1 +1,1 @@
-docker-compose up -d lifescience-web
+docker-compose up -d parnika-web
