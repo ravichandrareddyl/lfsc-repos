@@ -8,11 +8,12 @@ services:
     restart: always
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./templates/:/etc/nginx/conf.d/:ro
-      - ./sites/:/usr/share/nginx/html/:ro
-      - ./certs/:/etc/nginx/certs/:ro
+      - ~/websites/templates/:/etc/nginx/conf.d/:ro
+      - ~/websites/html/:/usr/share/nginx/html/:ro
+      - ~/websites/certs/:/etc/nginx/:ro
     ports:
-      - "8086:80"
+      - "80:80"
+      - "443:443"
     environment:
       - TZ=Asia/Kolkata
     #- NGINX_HOST=foobar.com
