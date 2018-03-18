@@ -11,6 +11,7 @@ RUN apt-get update \
 # Define mountable directories.
 VOLUME ["/etc/nginx/certs", "/etc/nginx/conf.d", "/var/log/nginx", "/var/www/html"]
 
+
 # Define working directory.
 WORKDIR /etc/nginx
 
@@ -23,5 +24,3 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 
 CMD ["nginx", "-g", "daemon off;"]
-
-# Expose ports.
