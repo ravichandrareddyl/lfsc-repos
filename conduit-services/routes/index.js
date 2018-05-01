@@ -2,5 +2,6 @@
 
 module.exports = {
     helloWorld: require('./helloWorld'),
-    searchDoctors: require('./searchDoctors')
+    searchDoctors: require('./searchDoctors'),
+    sendSms: require('./sendSms')
 }

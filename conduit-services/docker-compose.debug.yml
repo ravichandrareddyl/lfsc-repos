@@ -1,26 +1,25 @@
 version: '2'
 
 services:
-  db:
-    restart: always
-    image: mysql/mysql-server:latest
-    volumes:
-      - ~/mysql-data-dir:/var/lib/mysql
-    ports:
-      - "3306:3306"
-      - "33060:33060"
-    environment:
-      MYSQL_ROOT_PASSWORD: my-secret-pw
-      MYSQL_DATABASE: lifesciences
-      MYSQL_USER: lifesciences
-      MYSQL_PASSWORD: lifesciences
-
+  # db:
+  #   restart: always
+  #   image: mysql/mysql-server:latest
+  #   volumes:
+  #     - ~/mysql-data-dir:/var/lib/mysql
+  #   ports:
+  #     - "3306:3306"
+  #     - "33060:33060"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: my-secret-pw
+  #     MYSQL_DATABASE: lifesciences
+  #     MYSQL_USER: lifesciences
+  #     MYSQL_PASSWORD: lifesciences
   backend-services:
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     image: backend-services:debug
-    links:
-      - db:db
+    # links:
+    #   - db:db
     build:
       context: .
       dockerfile: Dockerfile.debug
@@ -33,3 +32,5 @@ services:
       user: lifesciences
       password: lifesciences
       database: lifesciences
+      smsId: ${SMS_ID}
+      smsPassword: ${SMS_PASSWORD}

@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/tape ./tests/*.test.js",
+    "test": "./node_modules/.bin/tape ./tests/*.test.js"
   },
   "author": "l.ravichandrareddy@gmail.com",
   "license": "ISC",
@@ -13,6 +14,14 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "mysql": "^2.15.0",
-    "rambda": "^1.0.12"
+    "rambda": "^1.0.12",
+    "request": "^2.85.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "proxyquire": "^2.0.1",
+    "sinon": "^5.0.1",
+    "tape": "^4.9.0"
   }
 }

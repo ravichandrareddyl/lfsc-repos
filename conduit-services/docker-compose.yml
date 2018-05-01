@@ -15,3 +15,5 @@ services:
       user: lifesciences
       password: lifesciences
       database: lifesciences
+      smsId: ${SMS_ID}
+      smsPassword: ${SMS_PASSWORD}

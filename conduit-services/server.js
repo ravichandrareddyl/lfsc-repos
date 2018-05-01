@@ -2,7 +2,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const { helloWorld, searchDoctors}  = require('./routes');
+const { helloWorld, searchDoctors, sendSms}  = require('./routes');
 const { shutDown } = require('./utils');
 // Constants
 const PORT = 8080;
@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.get('/', helloWorld);
 app.post('/searchDocs', searchDoctors);
+app.post('/sendSms', sendSms)
 
 app.listen(PORT, HOST);
 

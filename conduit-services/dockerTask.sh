@@ -25,6 +25,23 @@ cleanAll () {
   fi
 }
 
+stopContainers () {
+  if [[ -z $ENVIRONMENT ]]; then
+    ENVIRONMENT="debug"
+  fi
+
+  composeFileName="docker-compose.yml"
+  if [[ $ENVIRONMENT != "release" ]]; then
+    composeFileName="docker-compose.$ENVIRONMENT.yml"
+  fi
+
+  if [[ ! -f $composeFileName ]]; then
+    echo "$ENVIRONMENT is not a valid parameter. File '$composeFileName' does not exist."
+  else
+    echo "Building the image $imageName ($ENVIRONMENT)."
+    docker-compose -f $composeFileName -p $projectName stop
+  fi
+}
 # Builds the Docker image.
 buildImage () {
   if [[ -z $ENVIRONMENT ]]; then
@@ -103,6 +120,10 @@ else
     "build")
             ENVIRONMENT=$(echo $2 | tr "[:upper:]" "[:lower:]")
             buildImage
+            ;;
+    "stop")
+            ENVIRONMENT=$(echo $2 | tr "[:upper:]" "[:lower:]")
+            stopContainers
             ;;
     "clean")
             ENVIRONMENT=$(echo $2 | tr "[:upper:]" "[:lower:]")
