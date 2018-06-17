@@ -5,10 +5,11 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 ENTRYPOINT ["/tini", "--"]
 
-WORKDIR /usr/src/app
+WORKDIR /home/node/app
 COPY package*.json ./
+RUN npm i
 COPY . .
-RUN npm install
+
 
 
 EXPOSE 8080
