@@ -1,20 +1,15 @@
 version: '2'
-networks: 
-  mynet:
-    driver: bridge
 services:
-  flyway:
+ flyway:
     image: boxfuse/flyway
     command: -url=jdbc:mysql://db -schemas=lifescience -user=root -password=parnika migrate
     volumes:
       - ./sql:/flyway/sql
     depends_on:
       - db
-    networks:
-      - mynet
     links:
       - db:db
-  db:
+ db:
     image: mysql/mysql-server:latest
     restart: always
     volumes:
@@ -29,5 +24,15 @@ services:
     ports:
       - 3306:3306
       - 33060:33060
-    networks:
-      - mynet
+ glassfish:
+   build:
+    context: ./lifescience-app/
+    dockerfile: Dockerfile
+   volumes:
+    - ./www:/var/www/html
+   ports:
+    - "8084:8080"
+    - "4848:4848"
+   environment:
+    - ADMIN_PASSWORD=${GLASSFISH_ADMIN}
+    - TZ=Asia/Kolkata
